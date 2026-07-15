@@ -1,5 +1,13 @@
 package uce.edu.ec.pa.application.service;
 
+import java.util.List;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import uce.edu.ec.pa.domain.model.Producto;
+import uce.edu.ec.pa.infrastructure.repository.ProductoRepositoryImpl;
+
 @ApplicationScoped
 @Transactional
 public class ProductoService {
@@ -34,6 +42,5 @@ public class ProductoService {
     public List<Producto> obtenerTodosLosProductos() {
         return this.productoRepositoryImpl.buscarTodos();
     }
-    
 
 }
