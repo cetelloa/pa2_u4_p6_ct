@@ -1,7 +1,5 @@
 package uce.edu.ec.pa.infrastructure.repository;
 
-import java.util.List;
-
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -15,10 +13,6 @@ public class ReporteRepositoryImpl implements PanacheRepositoryBase<Reporte, Int
 
     @Inject
     private EntityManager entityManager;
-
-    public List<Reporte> buscarTodos() {
-        return findAll().list();
-    }
 
     public Reporte buscarPorTitulo(String titulo) {
         return find("titulo", titulo).firstResult();

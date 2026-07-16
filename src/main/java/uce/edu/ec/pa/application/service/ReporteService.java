@@ -21,18 +21,12 @@ public class ReporteService {
         String nombreHilo = Thread.currentThread().getName();
         System.out.println("Nombre del hilo ReporteService: " + nombreHilo);
         System.out.println("ID: " + Thread.currentThread().threadId());
-
-        // try {
-        // Thread.sleep(3000);
-        // } catch (Exception e) {
-
-        // }
         this.reporteRepositoryImpl.persist(reporte);
 
     }
 
     public void eliminarReporte(Integer id) {
-        this.reporteRepositoryImpl.delete(this.reporteRepositoryImpl.findById(id));
+        this.reporteRepositoryImpl.deleteById(this.reporteRepositoryImpl.findById(id).getId());
     }
 
     public void actualizarReporte(Reporte reporte, Integer id) {
@@ -44,10 +38,7 @@ public class ReporteService {
         reporteBase.setNombre(reporte.getNombre());
         reporteBase.setTipo(reporte.getTipo());
         reporteBase.setNumero(reporte.getNumero());
-        // no hace falta realizar explicitamente un update
-        // ya que al ser una entidad administrada por JPA, cualquier cambio realizado en
-        // el objeto se sincroniza automáticamente con la base de datos al finalizar la
-        // transacción.
+
     }
 
     public Reporte buscarPorId(Integer id) {
@@ -55,10 +46,10 @@ public class ReporteService {
     }
 
     public List<Reporte> buscarTodos() {
-        return this.reporteRepositoryImpl.buscarTodos();
+        return this.reporteRepositoryImpl.findAll().list();
     }
 
-    ////////////////////////////
+    //////////////////////
 
     @Auditoria
     public void guardarListaReportes(List<Reporte> lista) {
