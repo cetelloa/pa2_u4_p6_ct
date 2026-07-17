@@ -40,7 +40,7 @@ public class ProductoService {
     }
 
     public List<Producto> obtenerTodosLosProductos() {
-        return this.productoRepositoryImpl.buscarTodos();
+        return this.productoRepositoryImpl.findAll().list();
     }
 
 }
